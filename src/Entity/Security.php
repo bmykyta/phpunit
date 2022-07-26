@@ -19,7 +19,7 @@ class Security
     #[ORM\Column]
     private ?bool $isActive = null;
 
-    #[ORM\ManyToOne(inversedBy: 'enclosures')]
+    #[ORM\ManyToOne(inversedBy: 'securities')]
     private ?Enclosure $enclosure = null;
 
     public function __construct(?string $name, ?bool $isActive, ?Enclosure $enclosure)
