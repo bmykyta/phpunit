@@ -1,0 +1,9 @@
+services:
+    _defaults:
+        public: true
+
+    test.App\Service\EnclosureBuilderService: '@App\Service\EnclosureBuilderService'
+
+doctrine:
+    dbal:
+        url: 'sqlite:///%kernel.project_dir%/var/data/test.sqlite'
