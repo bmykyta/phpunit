@@ -19,10 +19,10 @@ class Security
     #[ORM\Column]
     private ?bool $isActive = null;
 
-    #[ORM\ManyToOne(inversedBy: 'securities')]
+    #[ORM\ManyToOne(targetEntity: Enclosure::class, inversedBy: 'securities')]
     private ?Enclosure $enclosure = null;
 
-    public function __construct(?string $name, ?bool $isActive, ?Enclosure $enclosure)
+    public function __construct(string $name, bool $isActive, Enclosure $enclosure)
     {
         $this->name      = $name;
         $this->isActive  = $isActive;

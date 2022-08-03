@@ -16,7 +16,7 @@ class Enclosure
     #[ORM\Column()]
     private ?int $id = null;
 
-    #[ORM\OneToMany('enclosure', Dinosaur::class, cascade: ['persist'])]
+    #[ORM\OneToMany(mappedBy: 'enclosure', targetEntity: Dinosaur::class, cascade: ['persist'])]
     private Collection $dinosaurs;
 
     #[ORM\OneToMany(mappedBy: 'enclosure', targetEntity: Security::class, cascade: ['persist'])]
@@ -26,6 +26,7 @@ class Enclosure
     {
         $this->dinosaurs  = new ArrayCollection();
         $this->securities = new ArrayCollection();
+
         if ($withBasicSecurity) {
             $this->addSecurities(new Security('Fence', true, $this));
         }
