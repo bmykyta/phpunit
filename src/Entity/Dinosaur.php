@@ -26,7 +26,7 @@ class Dinosaur
     #[ORM\Column]
     private bool $isCarnivorous = false;
 
-    #[ORM\ManyToMany(Enclosure::class, inversedBy: 'dinosaurs')]
+    #[ORM\ManyToOne(targetEntity: Enclosure::class, inversedBy: 'dinosaurs')]
     private Enclosure $enclosure;
 
     public function __construct(string $genus = 'Unknown', bool $isCarnivorous = false)
