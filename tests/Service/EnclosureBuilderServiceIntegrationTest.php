@@ -4,6 +4,7 @@ namespace App\Tests\Service;
 
 use App\Entity\Dinosaur;
 use App\Entity\Security;
+use App\Factory\DinosaurFactory;
 use App\Service\EnclosureBuilderService;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
@@ -21,7 +22,13 @@ class EnclosureBuilderServiceIntegrationTest extends KernelTestCase
 
     public function testItBuildsEnclosureWithDefaultSpecification()
     {
-        $enclosureBuilder = $this->getEnclosureBuilderService();
+        $dinosaurFactory = $this->createMock(DinosaurFactory::class);
+        $dinosaurFactory
+            ->expects($this->any())
+            ->method('growFromSpecification')
+            ->willReturnCallback(fn($spec) => new Dinosaur());
+
+        $enclosureBuilder = new EnclosureBuilderService($this->em, $dinosaurFactory);
 
         $enclosureBuilder->buildEnclosure();
 
@@ -40,10 +47,5 @@ class EnclosureBuilderServiceIntegrationTest extends KernelTestCase
             ->getSingleScalarResult();
 
         $this->assertSame(3, $count, 'Amount of dinosaurs is not the same.');
-    }
-
-    private function getEnclosureBuilderService(): EnclosureBuilderService
-    {
-        return self::$kernel->getContainer()->get('test.' . EnclosureBuilderService::class);
     }
 }
