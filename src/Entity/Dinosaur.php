@@ -85,4 +85,16 @@ class Dinosaur
 
         return $this;
     }
+
+    public function getEnclosure(): Enclosure
+    {
+        return $this->enclosure;
+    }
+
+    public function setEnclosure(Enclosure $enclosure): Dinosaur
+    {
+        $this->enclosure = $enclosure;
+
+        return $this;
+    }
 }

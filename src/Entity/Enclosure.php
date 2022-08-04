@@ -49,6 +49,11 @@ class Enclosure
         return $this->dinosaurs;
     }
 
+    public function getDinosaurCount(): int
+    {
+        return $this->dinosaurs->count();
+    }
+
     /**
      * @throws NotABuffetException|DinosaursAreRunningRampantException
      */
