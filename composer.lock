@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "92128f21a99f86d20b0256ce02467929",
+    "content-hash": "5be2cd02024619d685a490b0b28df575",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -6912,16 +6912,16 @@
         },
         {
             "name": "symfony/var-dumper",
-            "version": "v6.1.0",
+            "version": "v6.1.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/var-dumper.git",
-                "reference": "98587d939cb783aa04e828e8fa857edaca24c212"
+                "reference": "d5a5e44a2260c5eb5e746bf4f1fbd12ee6ceb427"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/var-dumper/zipball/98587d939cb783aa04e828e8fa857edaca24c212",
-                "reference": "98587d939cb783aa04e828e8fa857edaca24c212",
+                "url": "https://api.github.com/repos/symfony/var-dumper/zipball/d5a5e44a2260c5eb5e746bf4f1fbd12ee6ceb427",
+                "reference": "d5a5e44a2260c5eb5e746bf4f1fbd12ee6ceb427",
                 "shasum": ""
             },
             "require": {
@@ -6980,7 +6980,7 @@
                 "dump"
             ],
             "support": {
-                "source": "https://github.com/symfony/var-dumper/tree/v6.1.0"
+                "source": "https://github.com/symfony/var-dumper/tree/v6.1.3"
             },
             "funding": [
                 {
@@ -6996,7 +6996,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2022-05-21T13:34:40+00:00"
+            "time": "2022-07-20T13:46:29+00:00"
         },
         {
             "name": "symfony/var-exporter",
@@ -7676,6 +7676,94 @@
                 }
             ],
             "time": "2022-04-28T17:58:29+00:00"
+        },
+        {
+            "name": "liip/test-fixtures-bundle",
+            "version": "2.4.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/liip/LiipTestFixturesBundle.git",
+                "reference": "9a27d1cd8995d64bcead77c6aaf2491ac308e002"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/liip/LiipTestFixturesBundle/zipball/9a27d1cd8995d64bcead77c6aaf2491ac308e002",
+                "reference": "9a27d1cd8995d64bcead77c6aaf2491ac308e002",
+                "shasum": ""
+            },
+            "require": {
+                "doctrine/annotations": "^1.2.7",
+                "doctrine/common": "^2.13 || ^3.0",
+                "doctrine/persistence": "^1.3.3 || ^2.0 || ^3.0",
+                "php": "^7.2 || ^8.0",
+                "symfony/event-dispatcher": "^4.4 || ^5.4 || ^6.0",
+                "symfony/event-dispatcher-contracts": "^1 || ^2 || ^3",
+                "symfony/framework-bundle": "^4.4 || ^5.4 || ^6.0",
+                "symfony/yaml": "^4.4 || ^5.4 || ^6.0"
+            },
+            "conflict": {
+                "doctrine/dbal": "<2.11"
+            },
+            "require-dev": {
+                "doctrine/data-fixtures": "^1.3",
+                "doctrine/doctrine-bundle": "^2.1",
+                "doctrine/doctrine-fixtures-bundle": "^3.0.2",
+                "doctrine/orm": "^2.7",
+                "doctrine/persistence": "^1.3 || ^2.0",
+                "doctrine/phpcr-bundle": "^2.0.2",
+                "doctrine/phpcr-odm": "^1.3",
+                "jackalope/jackalope-doctrine-dbal": "^1.5",
+                "monolog/monolog": "^1.25.1 || ^2.0",
+                "phpunit/phpunit": "^8.0 || ^9.0",
+                "symfony/doctrine-bridge": "^4.4 || ^5.4 || ^6.0",
+                "symfony/monolog-bridge": "^4.4 || ^5.4 || ^6.0",
+                "symfony/monolog-bundle": "^3.2",
+                "symfony/phpunit-bridge": "^4.4 || ^5.4 || ^6.0",
+                "theofidry/alice-data-fixtures": "^1.0.1"
+            },
+            "suggest": {
+                "doctrine/dbal": "Required when using the fixture loading functionality with an ORM and SQLite",
+                "doctrine/doctrine-fixtures-bundle": "Required when using the fixture loading functionality",
+                "doctrine/orm": "Required when using the fixture loading functionality with an ORM and SQLite",
+                "hautelook/alice-bundle": "Required when using loadFixtureFiles functionality with custom providers",
+                "theofidry/alice-data-fixtures": "Required when using loadFixtureFiles functionality"
+            },
+            "type": "symfony-bundle",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Liip\\TestFixturesBundle\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Liip AG",
+                    "homepage": "http://www.liip.ch/"
+                },
+                {
+                    "name": "Community contributions",
+                    "homepage": "https://github.com/liip/LiipTestFixturesBundle/contributors"
+                }
+            ],
+            "description": "This bundles enables efficient loading of Doctrine fixtures in functional test-cases for Symfony applications",
+            "keywords": [
+                "fixtures",
+                "symfony",
+                "testing"
+            ],
+            "support": {
+                "issues": "https://github.com/liip/LiipTestFixturesBundle/issues",
+                "source": "https://github.com/liip/LiipTestFixturesBundle/tree/2.4.0"
+            },
+            "time": "2022-05-08T21:39:17+00:00"
         },
         {
             "name": "masterminds/html5",
