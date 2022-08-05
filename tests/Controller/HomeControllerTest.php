@@ -9,6 +9,7 @@ use Liip\TestFixturesBundle\Services\DatabaseToolCollection;
 use Liip\TestFixturesBundle\Services\DatabaseTools\AbstractDatabaseTool;
 use Symfony\Bundle\FrameworkBundle\KernelBrowser;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
+use Throwable;
 
 class HomeControllerTest extends WebTestCase
 {
@@ -17,6 +18,8 @@ class HomeControllerTest extends WebTestCase
     private EntityManagerInterface $entityManager;
 
     private KernelBrowser $client;
+
+    private $responseContent;
 
     public function setUp(): void
     {
@@ -45,10 +48,21 @@ class HomeControllerTest extends WebTestCase
             )->getReferenceRepository();
 
         $crawler = $this->client->request('GET', '/');
+        $this->responseContent = $this->client->getResponse()->getContent();
 
         $enclosure = $fixtures->getReference('carnivorous-enclosure');
         $selector  = sprintf('#enclosure-%s .button-alarm', $enclosure->getId());
 
         $this->assertGreaterThan(0, $crawler->filter($selector)->count());
+    }
+
+    /**
+     * Dump html content in case of test failure
+     * @throws Throwable
+     */
+    protected function onNotSuccessfulTest(Throwable $t): void
+    {
+//        dump($this->responseContent);
+        throw $t;
     }
 }
