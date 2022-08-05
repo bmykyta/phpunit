@@ -44,10 +44,10 @@ class HomeControllerTest extends WebTestCase
     public function testThatThereIsAnAlarmButtonWithoutSecurity()
     {
         $fixtures = $this->databaseTool->loadFixtures(
-                [LoadBasicParkDataFixtures::class, LoadSecurityDataFixtures::class]
-            )->getReferenceRepository();
+            [LoadBasicParkDataFixtures::class, LoadSecurityDataFixtures::class]
+        )->getReferenceRepository();
 
-        $crawler = $this->client->request('GET', '/');
+        $crawler               = $this->client->request('GET', '/');
         $this->responseContent = $this->client->getResponse()->getContent();
 
         $enclosure = $fixtures->getReference('carnivorous-enclosure');
@@ -56,13 +56,31 @@ class HomeControllerTest extends WebTestCase
         $this->assertGreaterThan(0, $crawler->filter($selector)->count());
     }
 
+    public function testItGrowsADinosaurFromSpecification()
+    {
+        $this->databaseTool->loadFixtures([LoadBasicParkDataFixtures::class, LoadSecurityDataFixtures::class]);
+        $this->client->followRedirects();
+        $crawler = $this->client->request('GET', '/');
+
+        $form = $crawler->selectButton('Grow dinosaur')->form();
+        $form['enclosure']->select(3);
+        $form['specification']->setValue('large herbivore');
+
+        $this->client->submit($form);
+
+        $this->assertStringContainsString(
+            'Grew a large herbivore in enclosure #3',
+            $this->client->getResponse()->getContent()
+        );
+    }
+
     /**
      * Dump html content in case of test failure
      * @throws Throwable
      */
     protected function onNotSuccessfulTest(Throwable $t): void
     {
-//        dump($this->responseContent);
+        //        dump($this->responseContent);
         throw $t;
     }
 }
