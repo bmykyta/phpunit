@@ -4,11 +4,12 @@ namespace App\Entity;
 
 use App\Exception\DinosaursAreRunningRampantException;
 use App\Exception\NotABuffetException;
+use App\Repository\EnclosureRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity]
+#[ORM\Entity(repositoryClass: EnclosureRepository::class)]
 class Enclosure
 {
     #[ORM\Id]
