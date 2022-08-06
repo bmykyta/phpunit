@@ -38,7 +38,9 @@ jobs:
                         # fallback to using the latest cache if no exact match is found
                         - v1-dependencies-
 
-            -   run: composer install -n --prefer-dist
+            -   run:
+                    name: Install packages
+                    command: composer install -n --prefer-dist
 
             -   save_cache:
                     key: v1-dependencies-{{ checksum "composer.json" }}
@@ -56,10 +58,13 @@ jobs:
 
             # prepare the database
             -   run: mkdir var/data
-            -   run: php bin/console d:s:c --env=test
+            -   run:
+                    name: Create schema for test environment
+                    command: php bin/console d:s:c --env=test
 
             # run tests with phpunit or codecept
-            -   run: ./vendor/bin/phpunit --log-junit ~/phpunit/junit.xml
+            -   run: alias phpunit=./vendor/bin/phpunit
+            -   run: phpunit --log-junit ~/phpunit/junit.xml --coverage-text
             #            - run: ./vendor/bin/codecept build
             #            - run: ./vendor/bin/codecept run
             - codecov/upload
