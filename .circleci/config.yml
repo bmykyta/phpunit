@@ -30,7 +30,7 @@ jobs:
             -   run: sudo apt update # PHP CircleCI 2.0 Configuration File# PHP CircleCI 2.0 Configuration File sudo apt install zlib1g-dev libsqlite3-dev
             -   run: sudo docker-php-ext-install zip
             -   run: sudo pecl install xdebug
-            -   run: sudo docker-php-ext-enable xdebug
+#            -   run: sudo docker-php-ext-enable xdebug
 
             # Download and cache dependencies
             -   restore_cache:
@@ -65,7 +65,11 @@ jobs:
                     command: php bin/console d:s:c --env=test
 
             # run tests with phpunit or codecept
-            -   run: ./vendor/bin/phpunit --log-junit ~/phpunit/junit.xml --coverage-clover coverage_clover
+            -   run:
+                    name: Run tests! Yaaay!
+                    command: ./vendor/bin/phpunit --log-junit ~/phpunit/junit.xml --coverage-clover coverage_clover
+                    environment:
+                        XDEBUG_MODE: coverage
             #            - run: ./vendor/bin/codecept build
             #            - run: ./vendor/bin/codecept run
             - codecov/upload
