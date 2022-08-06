@@ -55,7 +55,7 @@ jobs:
 
             # prepare the database
             -   run: mkdir var/data
-            #            - run: php bin/console d:s:c --env=test
+            -   run: php bin/console d:s:c --env=test
 
             # run tests with phpunit or codecept
             -   run: ./vendor/bin/phpunit --log-junit ~/phpunit/junit.xml
