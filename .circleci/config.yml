@@ -67,7 +67,7 @@ jobs:
             # run tests with phpunit or codecept
             -   run:
                     name: Run tests! Yaaay!
-                    command: ./vendor/bin/phpunit --log-junit ~/phpunit/junit.xml --coverage-clover coverage_clover
+                    command: ./vendor/bin/phpunit --log-junit ~/phpunit/junit.xml --coverage-clover coverage_clover.xml
                     environment:
                         XDEBUG_MODE: coverage
             #            - run: ./vendor/bin/codecept build
